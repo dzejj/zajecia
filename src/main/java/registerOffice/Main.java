@@ -7,7 +7,6 @@ import org.hibernate.cfg.Configuration;
 import registerOffice.businessObjects.cars.Car;
 import registerOffice.businessObjects.cars.PersonCar;
 import registerOffice.businessObjects.persons.*;
-import registerOffice.management.*;
 
 public class Main {
 
@@ -27,9 +26,8 @@ public class Main {
 		adam.getCars().add(c);
 		c.setOwner(adam);
 		//
-		
+	
 		session.persist(adam);
-		
 		session.getTransaction().commit();
 		session.close();
 		//PersonManager mgr = new PersonManager();

@@ -6,7 +6,7 @@ import java.util.List;
 import registerOffice.businessObjects.cars.Car;
 import registerOffice.businessObjects.persons.Person;
 
-public class DatabaseContext {
+public class MockDatabaseContext {
 
 	private static List<Person> persons=new ArrayList<Person>();
 	private static List<Car> cars=new ArrayList<Car>();

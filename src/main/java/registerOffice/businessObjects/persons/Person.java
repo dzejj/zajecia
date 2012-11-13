@@ -1,7 +1,6 @@
 package registerOffice.businessObjects.persons;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,14 +25,14 @@ public class Person {
 	private String name;
 	
 	@OneToMany(mappedBy="owner", cascade=javax.persistence.CascadeType.PERSIST)
-	private List<Car> cars;
+	private Collection<Car> cars;
 	private String pesel;
 	
 	public Person(String name, String pesel)
 	{
 		this.pesel=pesel;
 		this.name=name;
-		this.cars=new ArrayList<Car>();
+		this.cars=new CarsList(this);
 	}
 	
 	public Person(String name) {
@@ -52,7 +51,7 @@ public class Person {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public List<Car> getCars() {
+	public Collection<Car> getCars() {
 		return cars;
 	}
 	public void setCars(List<Car> cars) {
