@@ -53,7 +53,18 @@ public class Main {
 		{
 			System.out.println(p.getName());
 		}
-		
+		HibernateAddressManager ul = new HibernateAddressManager(session);
+		ul.save(new Address("klonowa","1234"));
+		ul.save(new Address("jesienna","1234"));
+		ul.save(new Address("jakastam","1234"));
+		Address address =new Address("klonowa");
+		address.setId(10);
+		ul.delete(person);
+		//session.getTransaction().commit();
+		for(Person p: mgr.getAll())
+		{
+			System.out.println(p.getName());
+		}
 		session.close();
 		//System.out.println("Osoba o id 4:"+mgr.get(4).getName());
 		
