@@ -26,7 +26,7 @@ import registerOffice.businessObjects.cars.*;
 				),
 		@NamedQuery(
 				name="deleteFromPerson",
-				query="delete Person where id=:id and name=:name"
+				query="delete Person where id=:id"
 				)})
 		
 @Entity

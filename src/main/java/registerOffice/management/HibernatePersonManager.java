@@ -35,8 +35,10 @@ public class HibernatePersonManager implements ManagerInterface<Person>{
 	@Override
 	public boolean save(Person obj) {
 		try{
+			this.session.beginTransaction();
 			this.session.save(obj);
 			
+			session.beginTransaction().commit();
 			return true;
 		}catch(Exception ex)
 		{
@@ -47,10 +49,11 @@ public class HibernatePersonManager implements ManagerInterface<Person>{
 	@Override
 	public boolean delete(Person obj) {
 		try{
+			this.session.beginTransaction();
 			this.session.getNamedQuery("deleteFromPerson")
 			.setInteger("id", obj.getId())
-			.setString("name", obj.getName())
 			.executeUpdate();
+			this.session.getTransaction().commit();
 			return true;
 		}
 		catch(Exception ex)

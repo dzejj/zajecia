@@ -21,7 +21,7 @@ public class Main {
 		
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
-		session.beginTransaction();
+		//session.beginTransaction();
 //		
 //		//
 //		Car c = new PersonCar("BMW","GDA12345");
@@ -46,9 +46,9 @@ public class Main {
 		mgr.save(new Person("Michal","1234"));
 		mgr.save(new Person("Paweł","1234"));
 		Person person =new Person("Adam");
-		person.setId(1);
+		person.setId(10);
 		mgr.delete(person);
-		session.getTransaction().commit();
+		//session.getTransaction().commit();
 		for(Person p: mgr.getAll())
 		{
 			System.out.println(p.getName());
