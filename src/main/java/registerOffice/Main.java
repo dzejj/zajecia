@@ -1,5 +1,7 @@
 package registerOffice;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -7,6 +9,7 @@ import org.hibernate.cfg.Configuration;
 import registerOffice.businessObjects.cars.Car;
 import registerOffice.businessObjects.cars.PersonCar;
 import registerOffice.businessObjects.persons.*;
+import registerOffice.management.HibernatePersonManager;
 
 public class Main {
 
@@ -19,29 +22,39 @@ public class Main {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
+//		
+//		//
+//		Car c = new PersonCar("BMW","GDA12345");
+//		Person adam = new Person("Adam","1234");
+//		adam.getCars().add(c);
+//		c.setOwner(adam);
+//		//
+//	
+//		session.persist(adam);
+//		
+//		
+//		List<Person> persons=session.getNamedQuery("allPersonsByName")
+//				.setString("name", "Adam").list();
+//		
+//		for(Person p : persons)
+//			System.out.println(p.getName());
+//		session.getTransaction().commit();
+//		session.close();
 		
-		//
-		Car c = new PersonCar("BMW","GDA12345");
-		Person adam = new Person("Adam","1234");
-		adam.getCars().add(c);
-		c.setOwner(adam);
-		//
-	
-		session.persist(adam);
+		HibernatePersonManager mgr = new HibernatePersonManager(session);
+		mgr.save(new Person("Adam","1234"));
+		mgr.save(new Person("Michal","1234"));
+		mgr.save(new Person("Paweł","1234"));
+		Person person =new Person("Adam");
+		person.setId(1);
+		mgr.delete(person);
 		session.getTransaction().commit();
+		for(Person p: mgr.getAll())
+		{
+			System.out.println(p.getName());
+		}
+		
 		session.close();
-		//PersonManager mgr = new PersonManager();
-		//mgr.save(new Person("Adam","1234"));
-		//mgr.save(new Person("Michal","1234"));
-		//mgr.save(new Person("Paweł","1234"));
-		
-		//mgr.delete(new Person("Adam"));
-		//for(Person p: mgr.getAll())
-		//{
-		//	System.out.println(p.getName());
-		//}
-		
-		
 		//System.out.println("Osoba o id 4:"+mgr.get(4).getName());
 		
 	}

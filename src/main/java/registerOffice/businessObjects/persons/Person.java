@@ -11,8 +11,24 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
 import registerOffice.businessObjects.cars.*;
 
+@NamedQueries({
+		@NamedQuery(
+					name="allPersonsById",
+					query="from Person p where p.id= :id " ),
+		@NamedQuery(
+				name="allPersons",
+				query="from Person p"
+				),
+		@NamedQuery(
+				name="deleteFromPerson",
+				query="delete Person where id=:id and name=:name"
+				)})
+		
 @Entity
 @Table(name="OSOBY")
 public class Person {
